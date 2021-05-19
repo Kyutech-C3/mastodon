@@ -20,6 +20,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
 import Icon from 'mastodon/components/icon';
+import KitStatus from './kit_status';
 
 import LiteracyCautionComponent from './literacy_caution'
 
@@ -246,6 +247,10 @@ class ComposeForm extends ImmutablePureComponent {
             <SpoilerButtonContainer />
           </div>
           <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
+        </div>
+
+        <div className='compose-form__kit-status'>
+          <KitStatus />
         </div>
 
         <div className='compose-form__publish'>

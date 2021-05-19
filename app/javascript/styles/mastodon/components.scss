@@ -698,6 +698,27 @@
     }
   }
 
+  .compose-form__kit-status {
+    display: flex;
+    min-width: 0;
+    flex: 0 0 auto;
+    .compose-form__kit-status__inner {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 4px;
+      background-color: darken($simple-background-color, 8%);
+      color: $black;
+    }
+    .compose-form__kit-status__accent {
+      background-color: lighten($ui-base-lighter-color, 10%);
+      padding: 3px 3px;
+      font-size: 1.2em;
+      font-weight: 600;
+      margin: 0 3px;
+    }
+  }
+
   .compose-form__publish {
     display: flex;
     justify-content: flex-end;
