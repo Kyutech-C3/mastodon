@@ -11,17 +11,14 @@ class Api::V1::CustomEmojisController < Api::BaseController
   end
 
   def create
-    # authorize :custom_emoji, :create?
-
-    p resource_params
     @custom_emoji = CustomEmoji.new(resource_params)
 
-    if @custom_emoji.save
-      # log_action :create, @custom_emoji
-      # redirect_to admin_custom_emojis_path, notice: I18n.t('admin.custom_emojis.created_msg')
+    begin
+      @custom_emoji.save!
       render json: @custom_emoji, serializer: REST::CustomEmojiSerializer
-    else
-      render json: { error: I18n.t('statuses.errors.failed_saving_custom_emoji') }, status: 500    end
+    rescue => e
+      render json: { error: e }
+    end
   end
 
   private
