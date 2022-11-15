@@ -1533,6 +1533,7 @@ en:
     default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
     suumo: suumo
+    gruvbox: gruvbox
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
