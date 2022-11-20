@@ -1,0 +1,32 @@
+- content_for :page_title do
+    = t('settings.request_custom_emoji.title')
+
+- content_for :header_tags do
+    = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :heading_actions do
+    = link_to t('settings.request_custom_emoji.upload'), new_settings_request_custom_emoji_path, class: 'button'
+
+= form_for(@form, url: batch_settings_request_custom_emojis_path) do |f|
+    = hidden_field_tag :page, params[:page] || 1
+
+    .batch-table.batch-table--simple
+        .batch-table__toolbar
+            %label.batch-table__toolbar__select.batch-checkbox-all
+                = check_box_tag :batch_checkbox_all, nil, false
+            .batch-table__toolbar__actions
+                - if @is_admin
+                    = f.button safe_join([fa_icon('thumbs-up'), t('settings.request_custom_emoji.action.approve')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+
+                    = f.button safe_join([fa_icon('thumbs-down'), t('settings.request_custom_emoji.action.reject')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+
+                = f.button safe_join([fa_icon('times'), t('admin.custom_emojis.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+
+        .batch-table__body
+            .batch-table__top_rid
+            - if @custom_emojis.empty?
+                = nothing_here 'nothing-here--under-tabs'
+            - else
+                = render partial: 'custom_emoji', collection: @custom_emojis, locals: { f: f }
+
+= paginate @custom_emojis

@@ -1427,6 +1427,19 @@ en:
     preferences: Preferences
     profile: Profile
     relationships: Follows and followers
+    request_custom_emoji:
+      action:
+        approve: approve
+        reject: reject
+      errors:
+        already_exists: already exists as a custom emoji.
+      created_msg: Emoji successfully requested!
+      state:
+        approved: approved
+        pending: pending
+        rejected: rejected
+      title: Request custom_emojis
+      upload: request
     statuses_cleanup: Automated post deletion
     strikes: Moderation strikes
     two_factor_authentication: Two-factor Auth
