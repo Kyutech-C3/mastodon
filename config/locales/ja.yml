@@ -1582,6 +1582,7 @@ ja:
     default: Mastodon (ダーク)
     mastodon-light: Mastodon (ライト)
     suumo: スーモ
+    gruvbox: gruvbox
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
