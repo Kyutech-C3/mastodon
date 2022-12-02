@@ -26,3 +26,8 @@
 @import 'mastodon/dashboard';
 @import 'mastodon/rtl';
 @import 'mastodon/accessibility';
+
+// 非上級者向けUIのマスコット配置
+.drawer__inner__mastodon.navigation_icon {
+  background: none;
+}

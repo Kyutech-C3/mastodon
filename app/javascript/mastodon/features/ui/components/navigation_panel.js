@@ -7,6 +7,8 @@ import NotificationsCounterIcon from './notifications_counter_icon';
 import FollowRequestsNavLink from './follow_requests_nav_link';
 import ListPanel from './list_panel';
 import TrendsContainer from 'mastodon/features/getting_started/containers/trends_container';
+import { mascot } from '../../../initial_state';
+import elephantUIPlane from '../../../../images/elephant_ui_plane.svg';
 
 const NavigationPanel = () => (
   <div className='navigation-panel'>
@@ -28,7 +30,9 @@ const NavigationPanel = () => (
     <a className='column-link column-link--transparent' href='/settings/preferences'><Icon className='column-link__icon' id='cog' fixedWidth /><FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' /></a>
     <a className='column-link column-link--transparent' href='/relationships'><Icon className='column-link__icon' id='users' fixedWidth /><FormattedMessage id='navigation_bar.follows_and_followers' defaultMessage='Follows and followers' /></a>
 
-    {showTrends && <div className='flex-spacer' />}
+    <div className='drawer__inner__mastodon navigation_icon'>
+      <img alt='' draggable='false' src={mascot || elephantUIPlane} />
+    </div>
     {showTrends && <TrendsContainer />}
   </div>
 );
