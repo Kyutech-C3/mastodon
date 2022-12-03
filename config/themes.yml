@@ -3,3 +3,4 @@ contrast: styles/contrast.scss
 mastodon-light: styles/mastodon-light.scss
 suumo: styles/suumo.scss
 gruvbox: styles/gruvbox.scss
+c3: styles/c3.scss

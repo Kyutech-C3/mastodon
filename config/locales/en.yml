@@ -1625,7 +1625,9 @@ en:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
     mastodon-light: Mastodon (Light)
+    suumo: Suumo
     gruvbox: gruvbox
+    c3: C3
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

@@ -1,0 +1,46 @@
+// Colors
+$ui-base-color: #202020;
+$ui-base-lighter-color: #88882b;
+$ui-primary-color: #ffff00;
+$ui-secondary-color: #6e6e00;
+$ui-highlight-color: #ffff00;
+$primary-text-color: #ffffff;
+
+// Import defaults
+@import 'application';
+
+.compose-form__publish-button-wrapper button.button {
+  color: $ui-base-color;
+}
+
+a.column-link.column-link--transparent:hover {
+  color: $ui-highlight-color;
+}
+
+h1.column-header>button {
+  color: $ui-highlight-color;
+}
+
+.admin-wrapper div.content h2 {
+  color: $ui-highlight-color;
+}
+
+.simple_form .block-button, .simple_form .button, .simple_form button {
+  color: $ui-base-color;
+}
+
+.admin-wrapper .sidebar ul .simple-navigation-active-leaf a {
+  color: $ui-base-color;
+}
+
+.dashboard__quick-access {
+  color: $ui-base-color;
+}
+
+.button {
+  color: $ui-base-color;
+}
+
+.simple_form .block-button.negative, .simple_form .button.negative, .simple_form button.negative {
+  color: $primary-text-color;
+}

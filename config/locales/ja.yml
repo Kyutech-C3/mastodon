@@ -1583,6 +1583,7 @@ ja:
     mastodon-light: Mastodon (ライト)
     suumo: スーモ
     gruvbox: gruvbox
+    c3: C3
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
