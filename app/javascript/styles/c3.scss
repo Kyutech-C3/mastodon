@@ -49,11 +49,11 @@ h1.column-header>button {
   color: $primary-text-color;
 }
 
-.column-link {
+.getting-started__wrapper .column-link {
   color: $ui-primary-color;
 }
 
-.column-link:hover {
+.getting-started__wrapper .column-link:hover {
   background-color: $ui-highlight-color;
   color: $ui-base-color;
 }
