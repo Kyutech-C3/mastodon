@@ -19,7 +19,7 @@ const emojiFilename = (filename) => {
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
-const emojify = (str, customEmojis = {}) => {
+const emojify = (str, customEmojis = {}, bigIcon = false) => {
   const tagCharsWithoutEmojis = '<&';
   const tagCharsWithEmojis = Object.keys(customEmojis).length ? '<&:' : '<&';
   let rtn = '', tagChars = tagCharsWithEmojis, invisible = 0;
@@ -42,7 +42,8 @@ const emojify = (str, customEmojis = {}) => {
         // if you want additional emoji handler, add statements below which set replacement and return true.
         if (shortname in customEmojis) {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
-          replacement = `<img draggable="false" class="emojione custom-emoji" alt="${shortname}" title="${shortname}" src="${filename}" data-original="${customEmojis[shortname].url}" data-static="${customEmojis[shortname].static_url}" />`;
+          const bigIconClass = bigIcon ? " big_icon" : "" ;
+          replacement = `<img draggable="false" class="emojione custom-emoji${bigIconClass}" alt="${shortname}" title="${shortname}" src="${filename}" data-original="${customEmojis[shortname].url}" data-static="${customEmojis[shortname].static_url}" />`;
           return true;
         }
         return false;
