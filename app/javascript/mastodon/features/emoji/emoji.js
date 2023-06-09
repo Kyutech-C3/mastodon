@@ -19,7 +19,7 @@ const emojiFilename = (filename) => {
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
-const emojifyTextNode = (node, customEmojis) => {
+const emojifyTextNode = (node, customEmojis, bigIcon) => {
   let str = node.textContent;
 
   const fragment = new DocumentFragment();
@@ -50,10 +50,9 @@ const emojifyTextNode = (node, customEmojis) => {
         if (shortname in customEmojis) {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
           const bigIconClass = bigIcon ? " big_icon" : "" ;
-          replacement = `<img draggable="false" class="emojione custom-emoji${bigIconClass}" alt="${shortname}" title="${shortname}" src="${filename}" data-original="${customEmojis[shortname].url}" data-static="${customEmojis[shortname].static_url}" />`;
           replacement = document.createElement('img');
           replacement.setAttribute('draggable', false);
-          replacement.setAttribute('class', 'emojione custom-emoji');
+          replacement.setAttribute('class', `emojione custom-emoji${bigIconClass}`);
           replacement.setAttribute('alt', shortname);
           replacement.setAttribute('title', shortname);
           replacement.setAttribute('src', filename);
@@ -90,28 +89,28 @@ const emojifyTextNode = (node, customEmojis) => {
   node.parentElement.replaceChild(fragment, node);
 };
 
-const emojifyNode = (node, customEmojis) => {
+const emojifyNode = (node, customEmojis, bigIcon) => {
   for (const child of node.childNodes) {
     switch(child.nodeType) {
     case Node.TEXT_NODE:
-      emojifyTextNode(child, customEmojis);
+      emojifyTextNode(child, customEmojis, bigIcon);
       break;
     case Node.ELEMENT_NODE:
       if (!child.classList.contains('invisible'))
-        emojifyNode(child, customEmojis);
+        emojifyNode(child, customEmojis, bigIcon);
       break;
     }
   }
 };
 
-const emojify = (str, customEmojis = {}) => {
+const emojify = (str, customEmojis = {}, bigIcon = []) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 
   if (!Object.keys(customEmojis).length)
     customEmojis = null;
 
-  emojifyNode(wrapper, customEmojis);
+  emojifyNode(wrapper, customEmojis, bigIcon);
 
   return wrapper.innerHTML;
 };
