@@ -103,7 +103,7 @@ const emojifyNode = (node, customEmojis, bigIcon) => {
   }
 };
 
-const emojify = (str, customEmojis = {}, bigIcon = []) => {
+const emojify = (str, customEmojis = {}, bigIcon = null) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 
