@@ -1,6 +1,9 @@
 $maximum-width: 1235px;
 $fluid-breakpoint: $maximum-width + 20px;
 
+$column-breakpoint: 700px;
+$small-breakpoint: 960px;
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
