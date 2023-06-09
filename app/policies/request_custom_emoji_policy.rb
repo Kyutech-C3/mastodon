@@ -6,6 +6,6 @@ class RequestCustomEmojiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin? || (record.account_id == current_account&.id)
+    role.can?(:manage_custom_emojis) || (record.account_id == current_account&.id)
   end
 end
