@@ -2,7 +2,7 @@
 
 class RequestCustomEmojiPolicy < ApplicationPolicy
   def update?
-    admin?
+    role.can?(:manage_custom_emojis)
   end
 
   def destroy?
