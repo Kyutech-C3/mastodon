@@ -8,9 +8,6 @@ import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
-import TrendsContainer from 'mastodon/features/getting_started/containers/trends_container';
-import { mascot } from '../../../initial_state';
-import elephantUIPlane from '../../../../images/elephant_ui_plane.svg';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
 import NavigationPortal from 'mastodon/components/navigation_portal';
@@ -103,10 +100,6 @@ class NavigationPanel extends React.Component {
         </div>
 
         <NavigationPortal />
-        <div className='drawer__inner__mastodon navigation_icon'>
-          <img alt='' draggable='false' src={mascot || elephantUIPlane} />
-        </div>
-        {showTrends && <TrendsContainer />}
       </div>
     );
   }
