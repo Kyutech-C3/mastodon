@@ -36,6 +36,14 @@ class InitialStateSerializer < ActiveModel::Serializer
       status_page_url: Setting.status_page_url,
     }
 
+    if !ENV['C3_OFFICIAL_SITE_URL'].blank?
+      store[:c3_official_site_url] = ENV['C3_OFFICIAL_SITE_URL'];
+    end
+
+    if !ENV['C3_TOYBOX_URL'].blank?
+      store[:c3_toybox_url] = ENV['C3_TOYBOX_URL'];
+    end
+
     if object.current_account
       store[:me]                = object.current_account.id.to_s
       store[:unfollow_modal]    = object.current_account.user.setting_unfollow_modal

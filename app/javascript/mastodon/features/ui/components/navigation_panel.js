@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Logo from 'mastodon/components/logo';
-import { timelinePreview, showTrends } from 'mastodon/initial_state';
+import { timelinePreview, showTrends, c3_official_site_url, c3_toybox_url } from 'mastodon/initial_state';
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
@@ -26,6 +26,8 @@ const messages = defineMessages({
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
+  officialSite: {id: 'external_url.official_site', defaultMessage: 'C3 Official Site'},
+  toybox: {id: 'external_url.toybox', defaultMessage: 'ToyBox'},
 });
 
 export default @injectIntl
@@ -89,6 +91,16 @@ class NavigationPanel extends React.Component {
             <ListPanel />
 
             <hr />
+
+            {
+              (c3_official_site_url || c3_toybox_url) && (
+                <>
+                  { c3_official_site_url && <ColumnLink transparent as='a' href={c3_official_site_url} target='_blank' icon='laptop' text={intl.formatMessage(messages.officialSite)} /> }
+                  { c3_toybox_url && <ColumnLink transparent as='a' href={c3_toybox_url} target='_blank' icon='archive' text={intl.formatMessage(messages.toybox)} /> }
+                  <hr />
+                </>
+              )
+            }
 
             <ColumnLink transparent href='/settings/preferences' icon='cog' text={intl.formatMessage(messages.preferences)} />
           </React.Fragment>

@@ -7,9 +7,6 @@ import elephantUIPlane from 'images/elephant_ui_plane.svg';
 
 const DefaultNavigation = () => (
   <>
-    {showTrends && (
-      <div className='flex-spacer' />
-    )}
     <div className='drawer__inner__mastodon navigation_icon'>
       <img alt='' draggable='false' src={mascot || elephantUIPlane} />
     </div>
