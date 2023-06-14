@@ -122,6 +122,10 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key='lists' icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />,
       );
 
+      if (myAccount.get('locked') || unreadFollowRequests > 0) {
+        navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      }
+
       if (c3_official_site_url || c3_toybox_url) {
         navItems.push(
           <ColumnSubheading key='header-c3' text={intl.formatMessage(messages.c3)} />,
@@ -136,10 +140,6 @@ class GettingStarted extends ImmutablePureComponent {
             <ColumnLink key='toybox' icon='archive' text={intl.formatMessage(messages.toybox)} as='a' href={c3_toybox_url} target='_blank' />
           )
         }
-      }
-
-      if (myAccount.get('locked') || unreadFollowRequests > 0) {
-        navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
       }
 
       navItems.push(
