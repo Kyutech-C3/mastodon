@@ -1461,6 +1461,19 @@ ja:
     preferences: ユーザー設定
     profile: プロフィール
     relationships: フォロー・フォロワー
+    request_custom_emoji:
+      action:
+        approve: 承認
+        reject: 不承認
+      errors:
+        already_exists: はすでにカスタム絵文字として存在します
+      created_msg: 絵文字の申請に成功しました！
+      state:
+        approved: 承認済
+        pending: 申請中
+        rejected: 不承認
+      title: カスタム絵文字の申請
+      upload: 申請
     statuses_cleanup: 投稿の自動削除
     strikes: モデレーションストライク
     two_factor_authentication: 二要素認証
@@ -1557,6 +1570,9 @@ ja:
     contrast: Mastodon (ハイコントラスト)
     default: Mastodon (ダーク)
     mastodon-light: Mastodon (ライト)
+    suumo: スーモ
+    gruvbox: gruvbox
+    c3: C3
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"

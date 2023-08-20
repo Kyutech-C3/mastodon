@@ -15,6 +15,7 @@ import NavigationContainer from '../compose/containers/navigation_container';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
 import TrendsContainer from './containers/trends_container';
 import { Helmet } from 'react-helmet';
+import { c3_official_site_url, c3_toybox_url } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -33,9 +34,12 @@ const messages = defineMessages({
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  officialSite: {id: 'external_url.official_site', defaultMessage: 'C3 Official Site'},
+  toybox: {id: 'external_url.toybox', defaultMessage: 'ToyBox'},
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
+  c3: { id: 'navigation_bar.c3', defaultMessage: 'C3' },
   menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
 });
 
@@ -120,6 +124,22 @@ class GettingStarted extends ImmutablePureComponent {
 
       if (myAccount.get('locked') || unreadFollowRequests > 0) {
         navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      }
+
+      if (c3_official_site_url || c3_toybox_url) {
+        navItems.push(
+          <ColumnSubheading key='header-c3' text={intl.formatMessage(messages.c3)} />,
+        )
+        if(c3_official_site_url) {
+          navItems.push(
+            <ColumnLink key='official-site' icon='laptop' text={intl.formatMessage(messages.officialSite)} as='a' href={c3_official_site_url} target='_blank' />,
+          )
+        }
+        if(c3_toybox_url) {
+          navItems.push(
+            <ColumnLink key='toybox' icon='archive' text={intl.formatMessage(messages.toybox)} as='a' href={c3_toybox_url} target='_blank' />
+          )
+        }
       }
 
       navItems.push(

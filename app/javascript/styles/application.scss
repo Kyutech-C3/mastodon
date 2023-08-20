@@ -23,3 +23,18 @@
 @import 'mastodon/dashboard';
 @import 'mastodon/rtl';
 @import 'mastodon/accessibility';
+
+// 非上級者向けUIのマスコット配置
+.drawer__inner__mastodon.navigation_icon {
+  background: none;
+}
+
+// 絵文字単体を大きく
+.emojione.custom-emoji.big_icon {
+  width: 40px;
+  height: 40px;
+}
+.detailed-status .emojione.custom-emoji.big_icon {
+  width: 50px;
+  height: 50px;
+}
