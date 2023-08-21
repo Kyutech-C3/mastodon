@@ -16,7 +16,7 @@ class Settings::RequestCustomEmojisController < Settings::BaseController
   def create
     @custom_emoji = RequestCustomEmoji.new(resource_params)
     @custom_emoji.account_id = current_account.id
-    if CustomEmoji.find_by(shortcode: @custom_emoji.shortcode)
+    if CustomEmoji.find_by(shortcode: @custom_emoji.shortcode, domain: nil)
       @custom_emoji.errors.add(:shortcode, I18n.t('settings.request_custom_emoji.errors.already_exists'))
       render :new
       return

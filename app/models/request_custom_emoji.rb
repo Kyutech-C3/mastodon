@@ -19,26 +19,16 @@
 class RequestCustomEmoji < ApplicationRecord
   include Attachmentable
 
-  LIMIT = 50.kilobytes
-
-  SHORTCODE_RE_FRAGMENT = '[a-zA-Z0-9_]{2,}'
-
-  SCAN_RE = /(?<=[^[:alnum:]:]|\n|^)
-    :(#{SHORTCODE_RE_FRAGMENT}):
-    (?=[^[:alnum:]:]|$)/x
-
-  IMAGE_MIME_TYPES = %w(image/png image/gif).freeze
-
   belongs_to :account
 
-  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }, validate_media_type: false
+  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set modify-date +set create-date' } }, validate_media_type: false
 
-  validates_attachment :image, content_type: { content_type: IMAGE_MIME_TYPES }, presence: true, size: { less_than: LIMIT }
-  validates :shortcode, uniqueness: true, format: { with: /\A#{SHORTCODE_RE_FRAGMENT}\z/ }, length: { minimum: 2 }
+  validates_attachment :image, content_type: { content_type: CustomEmoji::IMAGE_MIME_TYPES }, presence: true, size: { less_than: CustomEmoji::LIMIT }
+  validates :shortcode, uniqueness: true, format: { with: CustomEmoji::SHORTCODE_ONLY_RE }, length: { minimum: 2 }
 
   scope :alphabetic, -> { order(shortcode: :asc) }
 
-  remotable_attachment :image, LIMIT
+  remotable_attachment :image, CustomEmoji::LIMIT
 
   def object_type
     :emoji
@@ -48,7 +38,7 @@ class RequestCustomEmoji < ApplicationRecord
     def from_text(text, domain = nil)
       return [] if text.blank?
 
-      shortcodes = text.scan(SCAN_RE).map(&:first).uniq
+      shortcodes = text.scan(CustomEmoji::SCAN_RE).map(&:first).uniq
 
       return [] if shortcodes.empty?
 
