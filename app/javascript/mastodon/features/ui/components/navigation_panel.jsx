@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { WordmarkLogo } from 'mastodon/components/logo';
 import NavigationPortal from 'mastodon/components/navigation_portal';
-import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
+import { timelinePreview, trendsEnabled, c3_official_site_url, c3_toybox_url } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 
 import ColumnLink from './column_link';
@@ -32,6 +32,9 @@ const messages = defineMessages({
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
   advancedInterface: { id: 'navigation_bar.advanced_interface', defaultMessage: 'Open in advanced web interface' },
   openedInClassicInterface: { id: 'navigation_bar.opened_in_classic_interface', defaultMessage: 'Posts, accounts, and other specific pages are opened by default in the classic web interface.' },
+
+  officialSite: {id: 'external_url.official_site', defaultMessage: 'C3 Official Site'},
+  toybox: {id: 'external_url.toybox', defaultMessage: 'ToyBox'},
 });
 
 class NavigationPanel extends Component {
@@ -106,6 +109,16 @@ class NavigationPanel extends Component {
             <ListPanel />
 
             <hr />
+
+            {
+              (c3_official_site_url || c3_toybox_url) && (
+                <>
+                  { c3_official_site_url && <ColumnLink transparent as='a' href={c3_official_site_url} target='_blank' icon='laptop' text={intl.formatMessage(messages.officialSite)} /> }
+                  { c3_toybox_url && <ColumnLink transparent as='a' href={c3_toybox_url} target='_blank' icon='archive' text={intl.formatMessage(messages.toybox)} /> }
+                  <hr />
+                </>
+              )
+            }
 
             <ColumnLink transparent href='/settings/preferences' icon='cog' text={intl.formatMessage(messages.preferences)} />
           </>
