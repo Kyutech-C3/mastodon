@@ -88,6 +88,7 @@
     "lodash": "^4.17.21",
     "mark-loader": "^0.1.6",
     "marky": "^1.2.5",
+    "material-design-icons": "^3.0.1",
     "mini-css-extract-plugin": "^1.6.2",
     "mkdirp": "^3.0.1",
     "npmlog": "^7.0.1",
