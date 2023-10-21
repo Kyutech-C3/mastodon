@@ -18,7 +18,7 @@ const DefaultNavigation = () => (
         <Trends />
       ) : null
     }
-  <>
+  </>
 );
 
 class NavigationPortal extends PureComponent {
