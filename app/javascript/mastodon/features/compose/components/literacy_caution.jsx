@@ -7,8 +7,7 @@ const messages = defineMessages({
   cautionMessage: { id: 'custom.caution_message', defaultMessage: 'CAUTION' },
 });
 
-export default @injectIntl
-class LiteracyCautionComponent extends ImmutablePureComponent {
+class LiteracyCaution extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
   }
@@ -26,3 +25,5 @@ class LiteracyCautionComponent extends ImmutablePureComponent {
     )
   }
 }
+
+export default injectIntl(LiteracyCaution);
