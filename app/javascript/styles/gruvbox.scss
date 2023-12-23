@@ -1,0 +1,30 @@
+// Colors
+$ui-base-color: #282828;
+$ui-base-lighter-color: #665C54;
+$ui-primary-color: #D5C4A1;
+$ui-secondary-color: #689D6A;
+$ui-highlight-color: #8EC07C;
+$primary-text-color: #EBDBB2;
+
+// Import defaults
+@import 'application';
+
+// Columns width
+//.column {
+//  flex-grow: 1;
+//}
+
+// Stream
+.activity-stream {
+  .status.light {
+    .status__content {
+      color: $primary-text-color;
+    }
+
+    .display-name {
+      strong {
+        color: $primary-text-color;
+      }
+    }
+  }
+}

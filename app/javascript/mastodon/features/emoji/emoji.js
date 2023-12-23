@@ -22,7 +22,7 @@ const emojiFilename = (filename) => {
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
-const emojifyTextNode = (node, customEmojis) => {
+const emojifyTextNode = (node, customEmojis, bigIcon) => {
   const VS15 = 0xFE0E;
   const VS16 = 0xFE0F;
 
@@ -72,9 +72,10 @@ const emojifyTextNode = (node, customEmojis) => {
       // now got a replacee as ':shortcode:'
       // if you want additional emoji handler, add statements below which set replacement and return true.
       const filename = autoPlayGif ? custom_emoji.url : custom_emoji.static_url;
+      const bigIconClass = bigIcon ? " big_icon" : "" ;
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', 'false');
-      replacement.setAttribute('class', 'emojione custom-emoji');
+      replacement.setAttribute('class', `emojione custom-emoji${bigIconClass}`);
       replacement.setAttribute('alt', shortcode);
       replacement.setAttribute('title', shortcode);
       replacement.setAttribute('src', filename);
@@ -111,28 +112,28 @@ const emojifyTextNode = (node, customEmojis) => {
   node.parentElement.replaceChild(fragment, node);
 };
 
-const emojifyNode = (node, customEmojis) => {
+const emojifyNode = (node, customEmojis, bigIcon) => {
   for (const child of node.childNodes) {
     switch(child.nodeType) {
     case Node.TEXT_NODE:
-      emojifyTextNode(child, customEmojis);
+      emojifyTextNode(child, customEmojis, bigIcon);
       break;
     case Node.ELEMENT_NODE:
       if (!child.classList.contains('invisible'))
-        emojifyNode(child, customEmojis);
+        emojifyNode(child, customEmojis, bigIcon);
       break;
     }
   }
 };
 
-const emojify = (str, customEmojis = {}) => {
+const emojify = (str, customEmojis = {}, bigIcon = null) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 
   if (!Object.keys(customEmojis).length)
     customEmojis = null;
 
-  emojifyNode(wrapper, customEmojis);
+  emojifyNode(wrapper, customEmojis, bigIcon);
 
   return wrapper.innerHTML;
 };

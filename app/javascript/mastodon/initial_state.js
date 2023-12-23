@@ -81,6 +81,8 @@
  * @property {boolean=} use_pending_items
  * @property {string} version
  * @property {string} sso_redirect
+ * @property {string | null} c3_official_site_url
+ * @property {string | null} c3_toybox_url
  */
 
 /**
@@ -140,6 +142,10 @@ export const unfollowModal = getMeta('unfollow_modal');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
+
+export const c3_official_site_url = getMeta('c3_official_site_url');
+export const c3_toybox_url = getMeta('c3_toybox_url');
+
 export const languages = initialState?.languages;
 export const criticalUpdatesPending = initialState?.critical_updates_pending;
 // @ts-expect-error
