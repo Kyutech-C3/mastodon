@@ -4,15 +4,21 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 
 import AccountNavigation from 'mastodon/features/account/navigation';
 import Trends from 'mastodon/features/getting_started/containers/trends_container';
-import { showTrends } from 'mastodon/initial_state';
+import { showTrends, mascot } from 'mastodon/initial_state';
+
+import elephantUIPlane from 'images/elephant_ui_plane.svg';
 
 const DefaultNavigation = () => (
-  showTrends ? (
-    <>
-      <div className='flex-spacer' />
-      <Trends />
-    </>
-  ) : null
+  <>
+    <div className='drawer__inner__mastodon navigation_icon'>
+      <img alt='' draggable='false' src={mascot || elephantUIPlane} />
+    </div>
+    {
+      showTrends ? (
+        <Trends />
+      ) : null
+    }
+  </>
 );
 
 class NavigationPortal extends PureComponent {

@@ -21,6 +21,8 @@ import ColumnSubheading from '../ui/components/column_subheading';
 
 import TrendsContainer from './containers/trends_container';
 
+import { c3_official_site_url, c3_toybox_url } from 'mastodon/initial_state';
+
 const messages = defineMessages({
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
@@ -42,6 +44,10 @@ const messages = defineMessages({
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
   menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+
+  officialSite: {id: 'external_url.official_site', defaultMessage: 'C3 Official Site'},
+  toybox: {id: 'external_url.toybox', defaultMessage: 'ToyBox'},
+  c3: { id: 'navigation_bar.c3', defaultMessage: 'C3' },
 });
 
 const mapStateToProps = state => ({
@@ -123,6 +129,22 @@ class GettingStarted extends ImmutablePureComponent {
 
       if (myAccount.get('locked') || unreadFollowRequests > 0) {
         navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      }
+
+      if (c3_official_site_url || c3_toybox_url) {
+        navItems.push(
+          <ColumnSubheading key='header-c3' text={intl.formatMessage(messages.c3)} />,
+        )
+        if(c3_official_site_url) {
+          navItems.push(
+            <ColumnLink key='official-site' icon='laptop' text={intl.formatMessage(messages.officialSite)} as='a' href={c3_official_site_url} target='_blank' />,
+          )
+        }
+        if(c3_toybox_url) {
+          navItems.push(
+            <ColumnLink key='toybox' icon='archive' text={intl.formatMessage(messages.toybox)} as='a' href={c3_toybox_url} target='_blank' />
+          )
+        }
       }
 
       navItems.push(
