@@ -705,6 +705,18 @@ body > [data-popper-placement] {
   }
 }
 
+.literacy-caution {
+  margin-top: 10px;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: $ui-base-color;
+}
+.literacy-caution a, .literacy-caution a:link, .literacy-caution a:visited, .literacy-caution a:hover, .literacy-caution a:active  {
+  color: $primary-text-color;
+  text-decoration: none;
+}
+
+
 .character-counter {
   cursor: default;
   font-family: $font-sans-serif, sans-serif;

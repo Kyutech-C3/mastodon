@@ -1,0 +1,25 @@
+.batch-table__row
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :request_custom_emoji_ids, { multiple: true, include_hidden: false }, custom_emoji.id
+  .batch-table__row__content.batch-table__row__content--simple.batch-table__row__content--with-image
+    .batch-table__row__content__image
+      = custom_emoji_tag(custom_emoji)
+
+    .batch-table__row__content__text
+      %samp= ":#{custom_emoji.shortcode}:"
+
+    .batch-table__row__content__image
+      - if prefers_autoplay?
+        = image_tag custom_emoji.account.avatar_original_url, alt: custom_emoji.account.username, class: 'emojione'
+      - else
+        = image_tag custom_emoji.account.avatar_static_url, alt: custom_emoji.account.username, class: 'emojione custom-emoji', 'data-original' => custom_emoji.account.avatar_original_url, 'data-static' => custom_emoji.account.avatar_static_url
+
+    .batch-table__row__content__extra
+      - if custom_emoji.state == 0
+        = t('settings.request_custom_emoji.state.pending')
+      - elsif custom_emoji.state == 1
+        = t('settings.request_custom_emoji.state.approved')
+      - elsif custom_emoji.state == 2
+        = t('settings.request_custom_emoji.state.rejected')
+      - else
+        = 'error'
