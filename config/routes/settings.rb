@@ -71,4 +71,10 @@ namespace :settings do
   resources :sessions, only: [:destroy]
   resources :featured_tags, only: [:index, :create, :destroy]
   resources :login_activities, only: [:index]
+
+  resources :request_custom_emojis, only: [:index, :new, :create] do
+    collection do
+      post :batch
+    end
+  end
 end
