@@ -172,9 +172,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     as_array(@json['tag']).each do |tag|
       if equals_or_includes?(tag['type'], 'Hashtag')
-        @raw_tags << tag['name'] if tag['name'].present?
+        @raw_tags << tag['name']
       elsif equals_or_includes?(tag['type'], 'Mention')
-        @raw_mentions << tag['href'] if tag['href'].present?
+        @raw_mentions << tag['href']
       elsif equals_or_includes?(tag['type'], 'Emoji')
         @raw_emojis << tag
       end

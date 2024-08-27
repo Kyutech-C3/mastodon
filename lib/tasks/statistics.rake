@@ -9,13 +9,11 @@ namespace :mastodon do
     [
       ['App Libraries', 'app/lib'],
       %w(Presenters app/presenters),
-      %w(Policies app/policies),
-      %w(Serializers app/serializers),
       %w(Services app/services),
       %w(Validators app/validators),
       %w(Workers app/workers),
     ].each do |name, dir|
-      STATS_DIRECTORIES << [name, dir]
+      STATS_DIRECTORIES << [name, Rails.root.join(dir)]
     end
   end
 end
