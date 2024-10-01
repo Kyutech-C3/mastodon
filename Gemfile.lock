@@ -730,6 +730,7 @@ GEM
       redlock (~> 1.0)
     strong_migrations (0.8.0)
       activerecord (>= 5.2)
+    strscan (3.0.9)
     swd (1.3.0)
       activesupport (>= 3)
       attr_required (>= 0.0.5)

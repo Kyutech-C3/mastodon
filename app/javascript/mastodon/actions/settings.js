@@ -20,7 +20,7 @@ export function changeSetting(path, value) {
 }
 
 const debouncedSave = debounce((dispatch, getState) => {
-  if (getState().getIn(['settings', 'saved']) || !getState().getIn(['meta', 'me'])) {
+  if (getState().getIn(['settings', 'saved'])) {
     return;
   }
 
